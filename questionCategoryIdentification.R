@@ -9,7 +9,7 @@ install.packages("tm")
 ###########################    TRAIN CLASSIFIER       #####################################
 ###########################################################################################
 
-data <- read.csv(file = "C://Users//IBM_ADMIN//Documents//nikiAi//Test1//LabelledData.txt",sep = "\r",header = FALSE)
+data <- read.csv(file = "PATH//LabelledData.txt",sep = "\r",header = FALSE)
 data <- data.frame(do.call('rbind', strsplit(as.character(data$V1),',,,',fixed=TRUE)))
 
 data$X1 <- gsub("^\\s+|\\s+$", "", data$X1)
