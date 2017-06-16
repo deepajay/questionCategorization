@@ -4,12 +4,13 @@
 
 install.packages("RWeka")
 install.packages("tm")
+install.packages("e1071")
 
 ###########################################################################################
 ###########################    TRAIN CLASSIFIER       #####################################
 ###########################################################################################
 
-data <- read.csv(file = "PATH//LabelledData.txt",sep = "\r",header = FALSE)
+data <- read.csv(file = "PATH\\LabelledData.txt",sep = "\r",header = FALSE)
 data <- data.frame(do.call('rbind', strsplit(as.character(data$V1),',,,',fixed=TRUE)))
 
 data$X1 <- gsub("^\\s+|\\s+$", "", data$X1)
@@ -39,6 +40,8 @@ dt <- as.matrix(dt)
 
 dt <- data.frame(ifelse(dt>0,1,0))
 dt$CATEGORY <- data$X2
+
+library(e1071)
 
 model <- svm(CATEGORY ~ .,data=dt,type="C-classification")
 result <- data.frame(CATEGORY=dt$CATEGORY, PREDICTED=predict(model,dt))
